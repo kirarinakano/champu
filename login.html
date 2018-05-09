@@ -18,15 +18,15 @@
      
 <div class="form">
   <div class="username">
-    <p>Username <input type="text" maxlength="32" pattern="^[A-Za-z]+$" placeholder="4-32" name="UserName"/></p>
+    <p>Username <input class="name" type="text" maxlength="32" minlength="4" pattern="^[A-Za-z]+$" placeholder="4-32" name="UserName" required></p>
   </div>
 
   <div class="password">
-    <p>Password <input type="password" maxlength="12" placeholder="6-12" name="Password"/></p>
+    <p>Password <input class="pass" type="password" maxlength="12" minlength="6" placeholder="6-12" name="Password" required></p>
   </div>
   
   <div class="login">
-     <p><input class="logi"  type="submit" value="login" ></p>
+     <p><input class="logi"  type="submit" value="log in" ></p>
   </div>
   <a href='register.html' class="link">Sgin up</a><br><br>
 </div>

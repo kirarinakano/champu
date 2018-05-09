@@ -15,16 +15,27 @@
 <!--       <p >Name: <input type="text" name="name" ></p> -->
 <!--       <p >Pass:</p> <input type="text" name="pass" ><br> -->
      
-<p class="texto">Sgin up</p>
+<p class="page">Sgin up</p>
 <div class="Registro">
 <form method="post" action="https://getform.org/f/70415a77-d632-4883-bf07-2e15d3f557da">
 
-<p>Username <span class="fontawesome-user"></span><input type="text" required placeholder="4-32" autocomplete="off" name="UserName"></p> 
-<p>E-mail  <span class="fontawesome-envelope-alt"></span><input type="text" id="email" required placeholder="e-mail" autocomplete="off"></p>
-<p>Password <span class="fontawesome-lock"></span><input type="password" name="Password" id="password" required placeholder="6-12" autocomplete="off"></p>
-<p>Password again <span class="fontawesome-lock"></span><input type="password" name="Password" id="password" required placeholder="6-12" autocomplete="off"></p> 
-			<p><input type="submit" value="Registrar" title="Register"></p>
-      <a href='login.html'>Have an acount</a>
+<p class="name">
+  Username <input class="n" type="text"  placeholder="4-32" maxlength="32" minlength="4" autocomplete="off" name="UserName" required>
+</p> 
+
+<p class="e-mail">
+  E-mail  <input class="e" type="email" id="email" placeholder="e-mail" autocomplete="off" required>
+</p>
+
+<p class="word">
+  Password <input class="p" type="password" name="Password" id="password" required placeholder="6-12" autocomplete="off" required>
+</p>
+
+<p class="word2">
+  Password again <input class="p2" type="password" name="Password" id="password" placeholder="6-12" autocomplete="off" required><br><br>
+</p> 
+			<p><input class="register" type="submit" value="Registrar" title="Register"></p>
+      <p class="have">already have an account?<a href='login.html'>log in</a></p>
     </form>  
   </div>
 </div>

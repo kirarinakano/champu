@@ -17,4 +17,21 @@ if ($conn->query($sql)) {
 
 
     $pages    = mb_convert_kana($_POST['pages'], "ans", "utf-8");
-?>    
+?>
+<?php
+function setConfirmMessage(confirm_password) {
+ var password = document.getElementById("password").value;
+ var message = "";
+ if (password == confirm_password) {
+   message = "";
+ } else {
+   message =  "please input same characters in both password form";
+ }
+
+ var div = document.getElementById("pass_confirm_message");
+ if (!div.hasFistChild) {div.appendChild(document.createTextNode(""));}
+ div.firstChild.data = message;
+}
+?>
+
+

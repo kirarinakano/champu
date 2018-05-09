@@ -10,7 +10,23 @@ $UserName = $_POST['UserName'];
 if ($result->num_rows > 0) {
   echo "Welcome back " . $UserName . "<br><a href='login.php'>logout</a><br><a href='main.html'>enter</a>";
 } else {
-  echo "Error: " . $UserName . " and " . $Password . "are not correct.";
+  echo "Error: Your username or/and password are wrong.";
 }
-$pages    = mb_convert_kana($_POST['pages'], "ans", "utf-8");
+
+
+function setConfirmMessage(confirm_password) {
+ var password = document.getElementById("password").value;
+ var message = "";
+ if (password == confirm_password) {
+   message = "";
+ } else {
+   message =  "please input same characters in both password form";
+ }
+
+
+
+
+
+
+
 ?>

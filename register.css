@@ -6,3 +6,89 @@ div {
 	background-color: #6ba3ff;
 	height: 60px;
 }
+
+ div {
+  text-align: center;
+  width: 100%;
+}
+
+.top {
+	background-color: #6ba3ff;
+	height: 60px;
+}
+
+p {
+	color: #6ba3ff;
+}
+
+.page {
+	font-size: 36px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.link {
+	color: #6ba3ff;
+	font-size: 24px;
+}
+
+.name {
+  font-size: 24px;
+  font-family: 'Open Sans', sans-serif;  
+}
+
+.Username {
+  
+}
+
+.e-mail {
+  font-size: 24px;	
+}
+
+.word {
+  font-size: 24px;
+}
+
+.word2 {
+  font-size: 24px;	
+}
+
+.register {
+	width: 120px;
+	height: 70px;
+	font-size: 20px;
+	padding: ;
+	background-color: #6ba3ff;
+	color: white;
+	border-radius: 5px;
+
+}
+
+a {
+  font-size: 24px;
+  color: #6ba3ff;	
+}
+
+.n {
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+
+.e {
+  font-size: 24px;
+  border-radius: 5px;	
+}
+
+.p {
+  font-size: 24px;
+  border-radius: 5px;	
+}
+
+.have {
+  font-size: 24px;	
+}
+
+.p2 {
+  font-size: 24px;
+  border-radius: 5px;
+}
