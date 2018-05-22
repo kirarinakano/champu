@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+input {
+  font-family: 'Open Sans', sans-serif;
+}
+
 div {
-	text-align: center;
+  text-align: center;
 }
 
 .top {
-	background-color: #6ba3ff;
-	height: 60px;
+  background-color: #6ba3ff;
+  height: 60px;
 }
 
  div {
@@ -12,23 +22,19 @@ div {
   width: 100%;
 }
 
-.top {
-	background-color: #6ba3ff;
-	height: 60px;
-}
 
 p {
-	color: #6ba3ff;
+  color: #6ba3ff;
 }
 
 .page {
-	font-size: 36px;
-	font-family: 'Open Sans', sans-serif;
+  font-size: 36px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .link {
-	color: #6ba3ff;
-	font-size: 24px;
+  color: #6ba3ff;
+  font-size: 24px;
 }
 
 .name {
@@ -40,55 +46,60 @@ p {
   
 }
 
-.e-mail {
-  font-size: 24px;	
-}
-
-.word {
+.sub, .limitation{
   font-size: 24px;
+  color: #6ba3ff; 
 }
 
-.word2 {
-  font-size: 24px;	
+.sub {
+  width: 200px;
 }
 
 .register {
-	width: 120px;
-	height: 70px;
-	font-size: 20px;
-	padding: ;
-	background-color: #6ba3ff;
-	color: white;
-	border-radius: 5px;
+  width: 120px;
+  height: 70px;
+  font-size: 20px;
+  padding: ;
+  background-color: #6ba3ff;
+  color: white;
+  border-radius: 5px;
 
 }
 
 a {
   font-size: 24px;
-  color: #6ba3ff;	
+  color: #6ba3ff; 
 }
 
-.n {
-  font-size: 24px;
+
+
+
+.box {
+  font-size: 20px;
   border-radius: 5px;
+  height: 40px;
 }
 
-
-.e {
-  font-size: 24px;
-  border-radius: 5px;	
+.f{
+  color: blue;
 }
 
-.p {
-  font-size: 24px;
-  border-radius: 5px;	
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.have {
-  font-size: 24px;	
+input[type="number"] {
+    -moz-appearance:textfield;
 }
 
-.p2 {
-  font-size: 24px;
-  border-radius: 5px;
+.table {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.limitation {
+  font-size: 13px
 }
