@@ -8,6 +8,7 @@ $errormessage = "";
 if (isset($_POST["submit"])){
   $Password = $_POST['Password'];
   $Emailaddress = $_POST['Emailaddress'];
+  $userID = $_POST['userID'];
 
   $sql = "SELECT * FROM userinfo WHERE Emailaddress = '$Emailaddress' AND Password = '$Password'";
   $result = $conn->query($sql);
@@ -30,43 +31,11 @@ if (isset($_POST["submit"])){
 
 }
 
+
+
+
 ?>
 
-<!DOCTYPE>
-<html>
-<head>
-  <title>login</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="login.css">
-
-</head>
-  <body>
-    <div class="top">
-</div>
-      <div>
-
-    <p class="login">log in</p><br>
-    <form method='POST' action="" >
-
-<div class="form">
-  <div class="username">
-    <p>e-mail <input class="email" type="email" placeholder="" name="Emailaddress" required></p>
-  </div>
-
-  <div class="password">
-    <p>Password <input class="pass" type="password" maxlength="12" minlength="6" placeholder="6-12" name="Password" required></p>
-
-
-<?php
-// $sql = "SELECT * FROM userinfo WHERE Emailaddress = '$Emailaddress' and Password = '$Password'";
-//  $result = $conn->query($sql);
-
-// if ($result->num_rows > 0) {
-//   header('Location: add.php');
-// } else {
-//   echo "Error: Your username or/and password are wrong.";
-// }
-?>
 <!DOCTYPE>
 <html>
 <head>
