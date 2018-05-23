@@ -1,5 +1,5 @@
 <?php
-include 'champuconnect.php';
+include 'connect.php';
 
 $item = $_POST["Itemname"];
 $amount = $_POST["amount"];

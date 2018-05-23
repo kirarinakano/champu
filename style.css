@@ -1,4 +1,78 @@
+.header {
+	background-color: #6ba3ff;
+	height: 60px;
+}
+
 table, th, td {
-  border: 1px solid black;
+  border: 3px solid #6ba3ff;
   border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+th {
+	color: #6ba3ff;
+}
+td{
+	color :#F5A623;
+	font-weight: bold;
+}
+th, td {
+	padding: 5px 10px;
+}
+tbody td:last-child, thead th:last-child {
+    border-right: none;
+}
+
+.additem {
+	color: white;
+	background-color: #6ba3ff;
+	margin-top: 30px;
+	margin- left: 20px;
+	padding:10px 20px;
+	font-size: 24px;
+}
+button {
+	border-radius: 5px;
+}
+.edit {
+	color: white;
+	background-color: #ACE075;
+}
+.delete {
+	color : white;
+	background-color: #F5A623;
+	border-radius: 5px;
+}
+.edit.delete{
+	display: inline-block;
+
+}
+.update{
+	color: white;
+	background-color: #6ba3ff;
+}
+.calculater{
+	font-size: 24px;
+}
+.subtittle p{
+	color: #F5A623;
+	padding-left: 50px;
+	display: inline-block;
+}
+.calculater span{
+	color: #ACE075;
+}
+.calculate{
+	border-radius: 5px;
+	color: white;
+	background-color: #6ba3ff;
+}
+.bottom p{
+	display: inline-block;
+	color: #6ba3ff;
+}
+.average {
+	width: 60px;
+	height: 50px;
+	font-size: 20px;
 }

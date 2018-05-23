@@ -1,19 +1,61 @@
 <?php
-include 'champuconnect.php';
-if ($_POST) {
+
+session_start();
+include 'connect.php';
+$userID = 3;
+$sql = "SELECT * FROM userinfo LEFT JOIN itemdata ON userinfo.userID = itemdata.userID
+LEFT JOIN ";
+$result = $conn->query($sql);
+// $sql2 = "SELECT * FROM itemdata LEFT JOIN itemadddata ON itemdata.itemID = itemadddata.itemID";
+// $result2 = $conn->query($sql2);
+
+// if($conn->query($sql) ===TRUE){
+//   echo "";
+// }else{
+//   echo "Error:" .$sql."<br>".$conn->error;
+// }
+// var_dump(isset($_POST["itemdata"]));
+if (isset($_POST["itemdata"])) {
 $item = $_POST["Itemname"];
 $amount = $_POST["amount"];
+$startday = $_POST["startday"];
 
 
-$sql ="INSERT INTO itemdata (Itemname, Amount)
-  VALUES ('$item', '$amount') ";
+$sql1 ="INSERT INTO itemdata (Itemname, Amount,userID)
+  VALUES ('$item', '$amount', '$userID') ";
 
-if($conn->query($sql) ===TRUE){
+$sql4 = "SELECT itemID FROM itemdata";
+$result1 = $conn->query($sql4);
+ if ($result1->num_rows > 0){
+  while($row = $result1->fetch_assoc()){
+    $itemID = $row["itemID"];
+  }} else {
+      echo "0 results";
+  }
+
+$sql3 = "INSERT INTO itemadddata (Startday,itemID) VALUES('$startday','$itemID')";
+
+if ($conn->query($sql1) ===TRUE) {
   echo "";
-}else{
-  echo "Error:" .$sql."<br>".$conn->error;
+} else {
+  echo "Error:" .$sql1."<br>".$conn->error;
+}
+
+if ($conn->query($sql3) ===TRUE) {
+  echo "";
+} else {
+  echo "Error:" .$sql3."<br>".$conn->error;
 }
 }
+
+
+if (isset($row["Itemname"])) {
+ echo "<a style= 'color: #6ba3ff;' href='main.php'  class='link' >Back to main page</a>";     
+ } else {
+ 
+ }
+// header("Location: main.php");
+// exit();
 
 ?>
 
@@ -21,124 +63,30 @@ if($conn->query($sql) ===TRUE){
   
   <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="add.css">
   </head>
   <body>
-        <div class="shy">
-      
-    <div class="syky">
-    
-<div class="right">
-<button type="submit" class="logout">log out</button>
-</div>
+    <div class="shy">
+      <div class="syky">
+        <div class="right">
+         <button type="submit" class="logout">log out</button>
+        </div>
+         <form action="add.php" method="POST" >
+         <br><br><br><br>
+         <p class="item"> item name 
+         <input type="text" class="size"name="Itemname"maxlength="20" minlength="1" required placeholder="1-20" autocomplete="off">Amount 
+         <input type="number" class="amount"name="amount" min="1" required autocomplete="off">ml</p>
+         <br><br>
+         <p class="item">use start date</p> 
+          <br>
+      <div class="syky">  
+        <input type="date" value="" name="startday" required>
 
-   <link rel="stylesheet" href="add.css">
-            <form action="phpadd.php" method="POST"><br><br><br><br>
-           <p class="item"> item name <input type="text" class="size"name="Itemname"maxlength="20" minlength="1" required placeholder="1-20" autocomplete="off">
-           Amount <input type="number" class="amount"name="amount" min="1" required autocomplete="off">ml</p> <br><br>
-           <p class="item">use start data<p> <br>
-          <div class="syky">  
-          <select class="syky" name=”year”>
-  <option value="year">Year</option>
-　　　　　  <option value="1990">1990年</option>
-           <option value="1991">1991年</option>
-           <option value="1992">1992年</option>         
-           <option value="1993">1993年</option>
-           <option value="1994">1994年</option>  
-           <option value="1995">1995年</option>   
-           <option value="1996">1996年</option>   
-           <option value="1997">1997年</option>   
-           <option value="1998">1998年</option>   
-           <option value="1999">1999年</option>   
-           <option value="2000">2000年</option> 
-           <option value="2001">2001年</option> 
-           <option value="2002">2002年</option>    
-           <option value="2003">2003年</option> 
-           <option value="2004">2004年</option>   
-           <option value="2005">2005年</option>   
-           <option value="2006">2006年</option>   
-           <option value="2007">2007年</option>   
-           <option value="2008">2008年</option>   
-           <option value="2009">2009年</option>   
-           <option value="2010">2010年</option>   
-           <option value="2011">2011年</option>   
-           <option value="2012">2012年</option>   
-           <option value="2013">2013年</option>   
-           <option value="2014">2014年</option>   
-           <option value="2015">2015年</option>   
-           <option value="2016">2016年</option>   
-           <option value="2017">2017年</option>   
-           <option value="2018">2018年</option>
-           <option value="2019">2019年</option>   
-           <option value="2020">2020年</option>   
-           <option value="2021">2021年</option>   
-           <option value="2022">2022年</option>   
-           <option value="2023">2023年</option>   
-           <option value="2024">2024年</option>   
-           <option value="2025">2025年</option>   
-           <option value="2026">2026年</option>   
-           <option value="2027">2027年</option>   
-</select>
+<br><br><br> 
+<button  type="submit" name="itemdata" class="register">Register</button><br><br>
 
-            <select class="syky" name=”month”>
-<option  value="Month">month</option>                 
-<option value=”jan”>1月</option>
-<option value=”feb”>2月</option>
-<option value=”mar”>3月</option>
-<option value=”apr”>4月</option>
-<option value=”may”>5月</option>
-<option value=”jun”>6月</option>
-<option value=”jul”>7月</option>
-<option value=”aug”>8月</option>
-<option value=”sep”>9月</option>
-<option value=”oct”>10月</option>
-<option value=”nov”>11月</option>
-<option value=”dec”>12月</option>
-</select>  
-          
-                     <select class="syky" name=”day”>
-<option  value="Day">day</option>              
-<option value=”1”>1日</option>
-<option value=”feb”>2日</option>
-<option value=”mar”>3日</option>
-<option value=”apr”>4日</option>
-<option value=”may”>5日</option>
-<option value=”jun”>6日</option>
-<option value=”jul”>7日</option>
-<option value=”aug”>8日</option>
-<option value=”sep”>9日</option>
-<option value=”oct”>10日</option>
-<option value=”nov”>11日</option>
-<option value=”dec”>12日</option>
-<option value=”dec”>13日</option>  
-<option value=”dec”>14日</option>
-<option value=”dec”>15日</option>                      
-<option value=”dec”>16日</option>                       
-<option value=”dec”>17日</option>                       
-<option value=”dec”>18日</option>                       
-<option value=”dec”>19日</option>                       
-<option value=”dec”>20日</option>      
-<option value=”dec”>21日</option>                       
-<option value=”dec”>22日</option>                       
-<option value=”dec”>23日</option>                       
-<option value=”dec”>24日</option>                       
-<option value=”dec”>25日</option>                       
-<option value=”dec”>26日</option>                      
-<option value=”dec”>27日</option>                       
-<option value=”dec”>28日</option>                       
-<option value=”dec”>29日</option>                       
-<option value=”dec”>30日</option>                      
-<option value=”dec”>31日</option>                      
-                      
-</select>
 
-<br><br><br>              
- <button  type="submit""href=""  class="register">Register</button><br><br>
- <a style= "color: #6ba3ff;"href="champu"    class="link" >Back to main page</a>     
- </div>     
-        </form>
+    </div></form>
   </body>
   
 </html>
-
-<br><br><br>
-<a href="Main page"></a>
