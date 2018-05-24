@@ -2,22 +2,13 @@
 
 session_start();
 include 'connect.php';
-$Emailaddress = $_SESSION["Emailaddress"];
-// $userID = 3;
+
+var_dump($_SESSION["Emailaddress"]);
+$userID = 3;
 $sql = "SELECT * FROM userinfo LEFT JOIN itemdata ON userinfo.userID = itemdata.userID";
 $result = $conn->query($sql);
 $sql2 = "SELECT * FROM itemdata LEFT JOIN itemadddata ON itemdata.itemID = itemadddata.itemID";
 $result2 = $conn->query($sql2);
-
-$sql6 = "SELECT userID FROM userinfo WHERE Emailaddress='$Emailaddress'";
-$result3 = $conn->query($sql6);
-if ($result3->num_rows > 0) {
-        while ($row = $result3->fetch_assoc()) {
-          $user = $row["userID"];
-          $userID = $user;     
- }}
-
-
 
 // if($conn->query($sql) ===TRUE){
 //   echo "";
@@ -93,7 +84,7 @@ if (isset($_POST["itemdata"])) {
         <div class="right">
          <button type="submit" class="logout">log out</button>
         </div>
-         <form action="add.php" method="POST" >
+         <form action="addinfo.php" method="POST" >
          <br><br><br><br>
          <p class="item"> item name 
          <input type="text" class="size"name="Itemname"maxlength="20" minlength="1" required placeholder="1-20" autocomplete="off">Amount 
