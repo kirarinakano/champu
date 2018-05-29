@@ -42,7 +42,7 @@ $error = 0;
               </tr> 
               <tr>
                   <td></td>
-                  <td class="limitation">✳︎input only half-digit alphnumeric, 4-32 characters<br></td>
+                  <td class="limitation">✳︎input alphnumeric, 4-32 characters<br></td>
               </tr>
               <tr>
                   <td class="sub">Email address</td>  

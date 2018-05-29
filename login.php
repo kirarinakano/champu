@@ -8,16 +8,21 @@ $errormessage = "";
 if (isset($_POST["submit"])){
   $Password = $_POST['Password'];
   $Emailaddress = $_POST['Emailaddress'];
-  $userID = $_POST['userID'];
 
   $sql = "SELECT * FROM userinfo WHERE Emailaddress = '$Emailaddress' AND Password = '$Password'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+    $userID = $row["userID"];
+  }
+
   $_SESSION["password"] = $Password;
   $_SESSION["Emailaddress"] = $Emailaddress;
+  $_SESSION["userID"] = $userID;
 
-    $sql1 = "SELECT * FROM itemadddata";
+
+    $sql1 = "SELECT * FROM itemdata WHERE userID = '$userID'";
     $result = $conn->query($sql1);
 
         if ($result->num_rows == 0) {
