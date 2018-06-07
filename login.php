@@ -7,15 +7,18 @@ $errormessage = "";
 
 if (isset($_POST["submit"])){
   $Password = $_POST['Password'];
-  $Emailaddress = $_POST['Emailaddress'];
-  $userID = $_POST['userID'];
+  $Emailaddress = $_POST['Emailaddress']; 
 
   $sql = "SELECT * FROM userinfo WHERE Emailaddress = '$Emailaddress' AND Password = '$Password'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+
+  $_SESSION["userID"] = $row["userID"];
   $_SESSION["password"] = $Password;
   $_SESSION["Emailaddress"] = $Emailaddress;
+
 
     $sql1 = "SELECT * FROM itemadddata";
     $result = $conn->query($sql1);
