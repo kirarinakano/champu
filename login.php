@@ -14,8 +14,12 @@ if (isset($_POST["submit"])){
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+
+  $_SESSION["userID"] = $row["userID"];
   $_SESSION["password"] = $Password;
   $_SESSION["Emailaddress"] = $Emailaddress;
+
 
     $sql1 = "SELECT * FROM itemadddata";
     $result = $conn->query($sql1);

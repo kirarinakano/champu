@@ -8,6 +8,12 @@ input {
   font-family: 'Open Sans', sans-serif;
 }
 
+.top {
+  text-align: right;
+  background-color: #6ba3ff;
+  height: 60px;
+}
+
 div {
   text-align: center;
 }
@@ -19,19 +25,21 @@ div {
   color: #6ba3ff;		
 }
 
-.top {
-	background-color: #6ba3ff;
-	height: 60px;
-}
-
 .logout {
-		width: 120px;
+	width: 120px;
 	height: 40px;
 	font-size: 20px;
 	padding: ;
 	background-color: #98e867;
 	color: white;
 	border-radius: 5px;
+}
+.middle {
+	text-align: right;
+	align-items: center;
+	/*margin-left: auto;*/
+	padding-top: 10px;
+
 }
 	
 .prof img {
@@ -61,3 +69,4 @@ div {
 	color: orange;
 	font-size: 28px;
 }
+
