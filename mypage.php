@@ -1,15 +1,15 @@
 <?php
-include 'connect.php';
 session_start();
 
-if(!isset($_SESSION["Emailaddress"])){
-	header("Location: login.php");
-}
-
+include 'connect.php';
 
 $target_dir = "pics/";
 $Emailaddress = $_SESSION["Emailaddress"];
 $userID = $_SESSION["userID"];
+
+if(!isset($_SESSION["Emailaddress"])){
+	 header("Location: login.php");
+}
 
 $sql1 = "SELECT * FROM userinfo WHERE userID = $userID";
 $result = $conn->query($sql1);
@@ -45,13 +45,11 @@ if ($Picture == NULL) {
 
 
     <div class="top">
-    	<div class="middle"><form>
-    		<input type="submit" value="Logout" name="logout" class="logout" formaction="login.php">
-
-    		<?php
-              session_destroy();
-    		?>
-    	</form></div>
+    	<div class="middle">
+    		<form action="logout.php" method="POST">
+    		<input type="submit" value="Logout" name="logout" class="logout" >
+    		</form>
+    	</div>
     </div>  
       <p class="title"><strong>My page</strong></p><br>
 
@@ -101,25 +99,25 @@ if ($Picture == NULL) {
 
 			// Check file size
 			if ($_FILES["fileToUpload"]["size"] > 2000000) {
-			    echo "Sorry, your file is too large.";
+			    echo "The file size should be smaller than 2MB. Please reselect.";
 			    $uploadOk = 0;
 			}
 
 			// Allow certain file formats
 			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-			    echo "Sorry, only JPG and PNG files are allowed.";
+			    echo "✴︎Extention of the file is only JPG and PNG. Please reselect.";
 			    $uploadOk = 0;
 			}
 
 			// Check if $uploadOk is set to 0 by an error
 			if ($uploadOk == 0) {
-			    echo "Sorry, your file was not uploaded.";
+			    echo "";
 			// if everything is ok, try to upload file
 			} else {
 			    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
-					 $sql = "UPDATE userinfo SET Picture = '$filename' WHERE Emailaddress = '$Emailaddress' ";
+					 $sql = "UPDATE userinfo SET Picture = '$filename' WHERE userIDser = '$userID' ";
 
 					 if ($conn->query($sql) === TRUE) {
 					   echo "saved to db";
@@ -129,7 +127,7 @@ if ($Picture == NULL) {
 				    
 
 			    } else {
-			        echo "Sorry, there was an error uploading your file.";
+			        echo "";
 			    }
 			}
 		}
@@ -145,43 +143,8 @@ if ($Picture == NULL) {
 	    <p class="text"><strong>Connect a Social Network</strong></p>
 
         <h5>Facebook Login</h5>
-<div id="name"></div>
-<div id="profile_pic"></div>
-<fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
-
-<script type="text/javascript">
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '2034656116750921',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'api-version'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
 
 
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-  	FB.api('/me', function(response) {
-      document.getElementById("name").innerHTML = response.name;
-    });
-  });
-}
-</script>
 
 
 
