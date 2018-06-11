@@ -1,7 +1,6 @@
 <?php
-session_start();
 
-include 'connect.php';
+include 'connection.php';
 
 $errormessage = "";
 
@@ -14,8 +13,12 @@ if (isset($_POST["submit"])){
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+
+  $_SESSION["userID"] = $row["userID"];
   $_SESSION["password"] = $Password;
   $_SESSION["Emailaddress"] = $Emailaddress;
+
 
     $sql1 = "SELECT * FROM itemadddata";
     $result = $conn->query($sql1);
@@ -75,7 +78,12 @@ if (isset($_POST["submit"])){
             </tr>
         </table>
       </div>
+
+
+     
+        <a href='<?php echo $url ?>'><img src='twitter-login-blue.png' style='margin-left:4%; margin-top: 4%'></a>
     
+
 
      <br><br><br><br><br>
 
