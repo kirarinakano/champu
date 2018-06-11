@@ -10,8 +10,9 @@ $userID = $_SESSION["userID"];
 $sql2 = "SELECT * FROM userinfo WHERE userID = $userID";
 $result = $conn->query($sql2);
 
+$row = $result->fetch_assoc();
 
-
+$Picture = $row["Picture"];
 
 if ($Picture == NULL) {
   $Picture = "unknow.png";

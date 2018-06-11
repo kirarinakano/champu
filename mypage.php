@@ -117,10 +117,11 @@ if ($Picture == NULL) {
 			    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
-					 $sql = "UPDATE userinfo SET Picture = '$filename' WHERE userIDser = '$userID' ";
+					 $sql = "UPDATE userinfo SET Picture = '$filename' WHERE userID = '$userID' ";
 
 					 if ($conn->query($sql) === TRUE) {
-					   echo "saved to db";
+					   echo "";
+					   header("Location: mypage.php");
 					 } else {
 				       echo "Error: ". $sql . "<br>" . $conn->error;
 				    }
@@ -143,20 +144,7 @@ if ($Picture == NULL) {
 	    <p class="text"><strong>Connect a Social Network</strong></p>
 
         <h5>Facebook Login</h5>
-
-
-
-
-
-
-
 	    <a href="main.php">Back to main</a>
 	</form>
-
 </div>
-
-
-
-
-
 </body>	
