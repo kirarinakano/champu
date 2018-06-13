@@ -7,10 +7,10 @@ $errormessage = "";
 if (isset($_POST["submit"])){
   $Password = $_POST['Password'];
   $Emailaddress = $_POST['Emailaddress'];
-  $userID = $_POST['userID'];
+  // $userID = $_POST['userID'];
 
   $sql = "SELECT * FROM userinfo WHERE Emailaddress = '$Emailaddress' AND Password = '$Password'";
-  $result = $conn->query($sql);
+  $result = $conn_db->query($sql);
 
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
@@ -21,7 +21,7 @@ if (isset($_POST["submit"])){
 
 
     $sql1 = "SELECT * FROM itemadddata";
-    $result = $conn->query($sql1);
+    $result = $conn_db->query($sql1);
 
         if ($result->num_rows == 0) {
           header('Location: add.php');
