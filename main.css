@@ -5,19 +5,62 @@
 }
 
 
-.header {
-	background-color: #6ba3ff;
-	height: 60px;
+.top {
+  /*text-align: left;*/
+  background-color: #6ba3ff;
+  height: 60px;
 }
+
 .logo {
-	margin-left: 10px;
-	float: left;
-}
-.logo p{
-	font-weight: 1000;
+	/*font-weight: 1000;*/
 	color: #2055aa;
 	font-size: 25px;
 	padding-left: 5px;
+	padding-top: 1px;
+}
+
+.middle {
+	float: left;
+
+
+}
+
+.img {
+	padding-top: 5px;
+}
+
+.right {
+    float: right;
+}
+
+.company {
+	float: left;
+	padding-top: 10px;
+}
+
+.profile {
+	border-radius: 60px;
+}
+
+/* twitter画像をホバーした */
+img.profile:hover{
+ 
+	/* 透明度を上げることで、画像の色を薄く見せる。*/
+	opacity:0.5;
+ 
+	/* リンクをホバーしたときのカーソルにする。*/
+	cursor: pointer;
+}
+ 
+/* twitter画像をクリックした瞬間 */
+img.profile:active{
+ 
+	/* 要素を若干下に下げることで、押した感じを出す。*/
+ 
+	/* 今いる位置から相対的に3px下に配置する。*/
+	position: relative;
+	top: 3px;
+ 
 }
 
 .additem {
@@ -25,11 +68,14 @@
 	background-color: #6ba3ff;
 	padding:10px 20px;
 	font-size: 24px;
+	margin: 20px 0 10px 20px;
 }
 button {
 	border-radius: 5px;
 }
-
+::-webkit-scrollbar { 
+    display: none; 
+}
 table, th, td {
   border: 3px solid #6ba3ff;
   border-collapse: collapse;
@@ -42,7 +88,7 @@ table, th, td {
 .scroll tbody {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 138px;
+  height: 250px;
 }
 
 th {
@@ -57,6 +103,7 @@ td{
 
 th, td {
 	width: 40px;
+	height: 60px;
 }
 
 .table-container {
@@ -125,9 +172,11 @@ th, td {
 .calculate{
 	border-radius: 5px;
 	color: white;
+	font-size: 17px;
 	background-color: #6ba3ff;
 	width: 100px;
-	height: 40px;
+	height: 50px;
+	margin-left: 30px;
 }
 .bottom p{
 	color: #6ba3ff;

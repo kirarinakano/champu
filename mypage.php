@@ -1,107 +1,152 @@
 <?php
-include 'connect.php';
 session_start();
 
+include 'connect.php';
+
 $target_dir = "pics/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$Emailaddress = $_SESSION["Emailaddress"];
+$userID = $_SESSION["userID"];
 
-// Check if image file is a actual image or fake image
-if(isset($_POST["upload"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
+if(!isset($_SESSION["Emailaddress"])){
+     header("Location: login.php");
 }
 
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
+$sql1 = "SELECT * FROM userinfo WHERE userID = $userID";
+$result = $conn->query($sql1);
 
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 2000000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
+if ($result->num_rows > 0 ) {
+  while ($row = $result->fetch_assoc()) {
+    $Username = $row["Username"];
+    $Picture = $row["Picture"];
 
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpegg") {
-    echo "Sorry, only JPG and PNG files are allowed.";
-    $uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
+  }
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+  echo "0 result";
 }
 
+
+if ($Picture == NULL) {
+    $Picture = "unknow.png";
+}
 ?>
 
 <!DOCTYPE>
 <html>
 <head>
-
-    <title>mypage</title>
+    
+    <title>My page</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="mypage.css">
 
 </head>
 <body>
-
+　　
 
 
 
     <div class="top">
-    	<form>
-    		<input type="button" value="Log out" name="logout" class="logout">
-    	</form>
+        <div class="middle">
+            <form action="logout.php" method="POST">
+            <input type="submit" value="Logout" name="logout" class="logout" >
+            </form>
+        </div>
     </div>  
-      <p class="title">My page</p><br>
+      <p class="title"><strong>My page</strong></p><br>
 
 <div class="prof">
-<img src="<?php echo $target_file; ?>" height="400px" width="400px" ><br>
+<img src="pics/<?php echo $Picture; ?>" height="400px" width="400px" ><br>
 </div>
-
+<br>
+  <h1 align="center" ><?php echo "$Username"; ?></h1>
 <?php
   
 ?>
 
 
-<div align="center">
+<div align="center" >
     <form action="mypage.php" method="post" enctype="multipart/form-data">
-	    Change profile picture:
-	    <input type="file" name="fileToUpload" id="fileToUpload"><br>
-	    <input type="submit" value="Update" name="upload" class="upload"><br><br>
+        Change profile picture:
+        <input type="file" name="fileToUpload" id="fileToUpload"><br>
 
-	    <input class="button" type="submit" formaction="changeemailaddress.php" value="Change email address" >&ensp;&ensp;&ensp;&emsp;&emsp;&emsp;&emsp;
-	    <input class="button" type="submit" formaction="changepassword.php" value="Change password" >
-	    <br><br><br>
-	    <p class="text"><strong>Connect a Social Network</strong></p>
+        <?php
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["upload"])) {
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $filename = basename($_FILES["fileToUpload"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
+            if ($target_file == "pics/" || $target_file == "") {
+                echo "";
+            } else {
+                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                if($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
 
+            
 
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                echo "Sorry, file already exists.";
+                $uploadOk = 0;
+            }
 
+            // Check file size
+            if ($_FILES["fileToUpload"]["size"] > 2000000) {
+                echo "The file size should be smaller than 2MB. Please reselect.";
+                $uploadOk = 0;
+            }
 
+            // Allow certain file formats
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                echo "✴︎Extention of the file is only JPG and PNG. Please reselect.";
+                $uploadOk = 0;
+            }
 
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
-	    <a href="main.php">Back to main</a>
-	</form>
+                     $sql = "UPDATE userinfo SET Picture = '$filename' WHERE userID = '$userID' ";
 
+                     if ($conn->query($sql) === TRUE) {
+                       echo "";
+                       header("Location: mypage.php");
+                     } else {
+                       echo "Error: ". $sql . "<br>" . $conn->error;
+                    }
+                    
+
+                } else {
+                    echo "";
+                }
+            }
+        }
+
+        
+        ?>
+        <br>
+        <input type="submit" value="Update" name="upload" class="upload"><br><br>
+
+        <input class="button" type="submit" formaction="changeemailaddress.php" value="Change email address" >&ensp;&ensp;&ensp;&emsp;&emsp;&emsp;&emsp;
+        <input class="button" type="submit" formaction="changepassword.php" value="Change password" >
+        <br><br><br>
+        <p class="text"><strong>Connect a Social Network</strong></p>
+
+        <h5>Facebook Login</h5>
+        <a href="main.php">Back to main</a>
+    </form>
 </div>
-
-
-</body>	
+</body>
+16:21
+ Enterで送信 改行

@@ -1,5 +1,8 @@
 <?php
+session_start();
 include 'connect.php';
+
+
 $itemID = $_GET['itemID'];
 
 $errorMessage = "";
@@ -13,8 +16,8 @@ if ($result->num_rows > 0) {
          }
 }
 
-$sql = "SELECT * FROM itemadddata WHERE itemID='$itemID'";
-$result = $conn->query($sql);
+$sql1 = "SELECT * FROM itemadddata WHERE itemID='$itemID'";
+$result = $conn->query($sql1);
 if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $Endday = $row['Endday'];
@@ -22,8 +25,9 @@ if ($result->num_rows > 0) {
 }
 
 
-if (isset($_POST["update"])) {
-	$startday = $_POST["startday"];
+if (isset($_GET["update"])) {
+
+	$startday = $_GET["startday"];
 	$today = date("Y/m/d");
 
 	if (strtotime($today) < strtotime($startday)) {
@@ -42,6 +46,20 @@ if (isset($_POST["update"])) {
 }
 	
 
+$target_dir = "pics/";
+$Emailaddress = $_SESSION["Emailaddress"];
+$userID = $_SESSION["userID"];
+
+$sql2 = "SELECT * FROM userinfo WHERE userID = $userID";
+$result = $conn->query($sql2);
+
+$row = $result->fetch_assoc();
+
+$Picture = $row["Picture"];
+
+if ($Picture == NULL) {
+  $Picture = "unknow.png";
+}
 
 ?>
 
@@ -53,13 +71,17 @@ if (isset($_POST["update"])) {
 	<link rel="stylesheet" href="update.css">
 </head>
 <body>
-	<div class="header">
-      <div class="logo">
-        <img src="image/champulogo.png" width="80px" height="50px" alt="champulogo">
-         <p>CHAMPU</p>
-    
+	<div class="top" width="100px">
+   	 <div class="middle">
+       <img src="image/champulogo.png" width="80px" height="50px" align="left" class="img">
      </div>
-  </div>
+     <div class="company">
+      <h2 class="logo" style="margin-top: 0px;"> CHAMPU</h2> 
+     </div>
+     <div class="right">
+     	   <a href='mypage.php' ><img src="pics/<?php echo $Picture; ?>" height="60px" width="60px" class="profile" ontouchstart="" ></a>
+     </div>
+   </div>
 	<div class = "tittle">
 		<p>Update</p>
 	</div>
@@ -74,12 +96,13 @@ if (isset($_POST["update"])) {
 	<div class = "subtittle">
 		<p>Use start day</p>
 	</div>
-	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method='post'>
+	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method='get'>
 		<input type="date" value="" name="startday" class="date" required><br>
 	       <?php 
 	        echo $errorMessage;
 	        ?>
 	    <div class="wrap_update">
+	    <input type='hidden' name="itemID" value="<?php echo $_GET['itemID']; ?>">
 	    <button type="submit" name="update" class="update">Update</button>
 		</div>
 	    <br>

@@ -25,25 +25,26 @@ if (isset($_POST["itemdata"])) {
   $item = $_POST["Itemname"];
   $amount = $_POST["amount"];
   $startday = $_POST["startday"];
-  $sql1 ="INSERT INTO itemdata (Itemname, Amount,userID)
+ 
+  $today = date("Y/m/d");
+  if (strtotime($today) < strtotime($startday)) {
+      $errorMessage = "The start day should be before or today. Please reselect.";
+    } else if (strtotime($today) === strtotime($startday)) {
+       $sql1 ="INSERT INTO itemdata (Itemname, Amount,userID)
     VALUES ('$item', '$amount', '$userID') ";
      if ($conn->query($sql1) === TRUE) {
     echo "";
     } else {
     echo "Error:" .$sql1."<br>".$conn->error;
       }
-  $sql4 = "SELECT itemID FROM itemdata";
-  $result1 = $conn->query($sql4);
-   if ($result1->num_rows > 0) {
-    while ($row = $result1->fetch_assoc()) {
+      $sql4 = "SELECT itemID FROM itemdata";
+     $result1 = $conn->query($sql4);
+     if ($result1->num_rows > 0) {
+      while ($row = $result1->fetch_assoc()) {
       $itemID = $row["itemID"];
-   }} else {
+       }} else {
         echo "0 results";
       }
-  $today = date("Y/m/d");
-  if (strtotime($today) < strtotime($startday)) {
-      $errorMessage = "The start day should be before or today. Please reselect.";
-    } else if (strtotime($today) === strtotime($startday)) {
       $sql3 = "INSERT INTO itemadddata (Startday,itemID) VALUES('$startday','$itemID')";
        if ($conn->query($sql3) === TRUE) {
        echo "";
@@ -61,6 +62,23 @@ if (isset($_POST["itemdata"])) {
         }
       }
   }
+
+
+$target_dir = "pics/";
+$Emailaddress = $_SESSION["Emailaddress"];
+$userID = $_SESSION["userID"];
+
+$sql2 = "SELECT * FROM userinfo WHERE userID = $userID";
+$result = $conn->query($sql2);
+
+$row = $result->fetch_assoc();
+
+$Picture = $row["Picture"];
+
+if ($Picture == NULL) {
+  $Picture = "unknow.png";
+}
+
 // header("Location: main.php");
 // exit();
 ?>
@@ -72,13 +90,17 @@ if (isset($_POST["itemdata"])) {
   <title>additem</title>
 </head>
 <body>
-    <div class="header">
-      <div class="logo">
-        <img src="image/champulogo.png" width="80px" height="50px" alt="champulogo">
-         <p>CHAMPU</p>
-    
+   <div class="top" width="100px">
+     <div class="middle">
+       <img src="image/champulogo.png" width="80px" height="50px" align="left" class="img">
      </div>
-  </div>
+     <div class="company">
+      <h2 class="logo" style="margin-top: 0px;"> CHAMPU</h2> 
+     </div>
+     <div class="right">
+         <a href='mypage.php' ><img src="pics/<?php echo $Picture; ?>" height="60px" width="60px" class="profile" ontouchstart="" ></a>
+     </div>
+   </div>
   <div class="tittle">
     <p>Add item</p>
   </div>

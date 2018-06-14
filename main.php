@@ -42,6 +42,22 @@ $target_day = "";
   $number2 = $_POST['tripday'];
   $answer = $number1 * $number2;
   }
+
+
+$target_dir = "pics/";
+$Emailaddress = $_SESSION["Emailaddress"];
+$userID = $_SESSION["userID"];
+
+$sql2 = "SELECT * FROM userinfo WHERE userID = $userID";
+$result = $conn->query($sql2);
+
+$row = $result->fetch_assoc();
+
+$Picture = $row["Picture"];
+
+if ($Picture == NULL) {
+  $Picture = "unknow.png";
+}
 // delete item data
   ?>
   <html>
@@ -73,13 +89,17 @@ $target_day = "";
 
   </head>
   <body>
-    <div class="header">
-      <div class="logo">
-        <img src="image/champulogo.png" width="80px" height="50px" alt="champulogo">
-         <p>CHAMPU</p>
-    
+    <div class="top" width="100px">
+     <div class="middle">
+       <img src="image/champulogo.png" width="80px" height="50px" align="left" class="img">
      </div>
-  </div>
+     <div class="company">
+      <h2 class="logo" style="margin-top: 0px;"> CHAMPU</h2> 
+     </div>
+     <div class="right">
+         <a href='mypage.php' ><img src="pics/<?php echo $Picture; ?>" height="60px" width="60px" class="profile" ontouchstart="" ></a>
+     </div>
+   </div>
     <a href="add.php"><button class="additem">Add New Item</button></a>
 
     <div class="table">
@@ -264,12 +284,12 @@ $target_day = "";
         </div>
         <div class="bottom">
           <div class="ave">
-         <input class='average' type="number" name="average" value="<?= $_POST['average'] ?>">
+         <input class='average' type="number" name="average" min="1" value="<?= $_POST['average'] ?>">
          <span>ml</span>
       　<p>×</p>
         </div>
         <div class="trip">
-      　 <input class='tripday' type="number" name="tripday" value="<?= $_POST['tripday'] ?>">
+      　 <input class='tripday' type="number" name="tripday" min="1" value="<?= $_POST['tripday'] ?>">
       　 <p>=</p>
    　　 　 <p>You need</p>
     　　　 <?php
