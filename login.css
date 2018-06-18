@@ -12,6 +12,37 @@ div {
   text-align: center;
 }
 
+.top {
+  /*text-align: left;*/
+  background-color: #6ba3ff;
+  height: 60px;
+}
+
+.logo {
+  /*font-weight: 1000;*/
+  color: #2055aa;
+  font-size: 25px;
+  padding-left: 5px;
+  padding-top: 1px;
+}
+
+.middle {
+  float: left;
+}
+
+.img {
+  padding-top: 5px;
+}
+
+.right {
+    float: right;
+}
+
+.company {
+  float: left;
+  padding-top: 10px;
+}
+
 .title {
   text-align: center;
   font-size: 36px;
