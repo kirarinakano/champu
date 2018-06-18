@@ -79,41 +79,41 @@ if (isset($_POST["itemdata"])) {
   <title>additem</title>
 </head>
 <body>
-  <div class="shy">
-      <div class="syky">
-        <div class="right">
-         <button type="submit" class="logout">log out</button>
-        </div>
-         <form action="addinfo.php" method="POST" >
-         <br><br><br><br>
-         <p class="item"> item name 
-         <input type="text" class="size"name="Itemname"maxlength="20" minlength="1" required placeholder="1-20" autocomplete="off">Amount 
-         <input type="number" class="amount"name="amount" min="1" required autocomplete="off">ml</p>
-         <br><br>
-         <p class="item">use start date</p> 
-          <br>
-      <div class="syky">  
-        <input type="date" value="" name="startday" required>
+  <div class="right">
+    <button type="submit" class="logout">log out</button>
+  </div>
+  <form action="addinfo.php" method="POST" >
+    <br><br><br><br>
+    <p class="item">item name 
+      <input type="text" class="size"name="Itemname"maxlength="20" minlength="1" required placeholder="1-20" autocomplete="off">Amount 
+      <input type="number" class="amount"name="amount" min="1" required autocomplete="off">ml
+    </p>
+      <br><br>
+    <p class="item">use start date</p> 
+      <br>
+    <div class="syky">  
+      <input type="date" value="" name="startday" required>
         <?php 
         echo $errorMessage;
         ?>
 
-<br><br><br> 
-<button type="submit" name="itemdata" class="register">Register</button><br><br>
+      <br><br><br> 
+      <button type="submit" name="itemdata" class="register">Register</button><br><br>
  
  
 
-    <?php  
-     $sql5 = "SELECT * FROM itemdata";
-    $result2 = $conn->query($sql5);
+        <?php  
+        $sql5 = "SELECT * FROM itemdata";
+        $result2 = $conn->query($sql5);
 
         if ($result2->num_rows == 0) {
         } else {
           echo "<a style= 'color: #6ba3ff;' href='main.php'  class='link' >Back to main page</a>";
         }
         
-?>
-    </div></form>
+        ?>
+    </div>
+  </form>
 </body>
 </html>
   
