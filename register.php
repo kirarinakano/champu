@@ -24,14 +24,19 @@ $error = 0;
   <link rel="stylesheet" href="register.css">
 </head>
 <body>
-    
-      <div class="top"></div>
+  <div class="top" width="100px">
+    <div class="middle">
+        <img src="image/champulogo.png" width="80px" height="50px" align="left" class="img">
+    </div>
+     <div class="company">
+      <h2 class="logo" style="margin-top: 0px;"> CHAMPU</h2> 
+  </div>
 <!--       <p >Name: <input type="text" name="name" ></p> -->
 <!--       <p >Pass:</p> <input type="text" name="pass" ><br> -->
           <div class="title">
             <p class="page"><strong>Sign up</strong></p>
           </div>
-      <div class="fram">
+      <div class="frame">
         <div class="table">
           <table>
             <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
