@@ -8,7 +8,7 @@ $errormessage = "";
 if (isset($_POST["submit"])){
   $Password = $_POST['Password'];
   $Emailaddress = $_POST['Emailaddress'];
-  $userID = $_POST['userID'];
+  // $userID = $_POST['userID'];
 
   $sql = "SELECT * FROM userinfo WHERE Emailaddress = '$Emailaddress' AND Password = '$Password'";
   $result = $conn->query($sql);
@@ -19,9 +19,10 @@ if (isset($_POST["submit"])){
   $_SESSION["userID"] = $row["userID"];
   $_SESSION["password"] = $Password;
   $_SESSION["Emailaddress"] = $Emailaddress;
+  $userID = $row["userID"];
 
 
-    $sql1 = "SELECT * FROM itemadddata";
+    $sql1 = "SELECT * FROM itemadddata WHERE userID='$userID'";
     $result = $conn->query($sql1);
 
         if ($result->num_rows == 0) {

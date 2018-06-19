@@ -132,8 +132,6 @@ if ($Picture == NULL) {
 			    }
 			}
 		}
-
-		
 		?>
         <br>
 	    <input type="submit" value="Update" name="upload" class="upload"><br><br>
