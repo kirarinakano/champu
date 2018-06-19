@@ -80,12 +80,12 @@ if (isset($_POST["submit"])){
       </div>
 
 
-     
+        <br><br>
         <a href='<?php echo $url ?>'><img src='twitter-login-blue.png' style='margin-left:4%; margin-top: 4%'></a>
     
 
 
-     <br><br><br><br><br>
+     <br><br>
 
         <p><input class="logi"  type="submit" value="log in" name="submit"></p>
       <br>
