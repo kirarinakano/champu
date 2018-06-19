@@ -6,7 +6,8 @@ if (isset($_POST["submit"])){
 $Password = $_POST["Password"];
 $repassword = $_POST["repassword"];
 $Emailaddress = $_POST['Emailaddress'];
-$UserName = $_POST['UserName'];   
+$UserName = $_POST['UserName'];
+$Birthday = $_POST['Birthday']; 
 } 
 
 
@@ -94,7 +95,7 @@ $error = 0;
               </tr>
               <tr>
                   <td class="sub">BirthDay</td>
-                  <td align="center"><input class="box" type="tel" maxlength='8' minlength="8" name="birthday" autocomplete="off" required pattern="^[0-9]+$"></td> 
+                  <td align="center"><input class="box" type="tel" maxlength='8' minlength="8" name="Birthday" autocomplete="off" required pattern="^[0-9]+$"></td> 
               </tr>
               <tr>
                   <td></td>
@@ -122,8 +123,8 @@ $error = 0;
 <?php
 
 if (isset($_POST["submit"])){
- $sql = "INSERT INTO userinfo (userID, Username, Emailaddress, Password)
- VALUES ('','$UserName', '$Emailaddress', '$Password')";
+ $sql = "INSERT INTO userinfo (userID, Username, Emailaddress, Password, Birthday)
+ VALUES ('','$UserName', '$Emailaddress', '$Password', '$Birthday')";
 
  if ($error != 1 && $conn->query($sql)) {
    header('Location: login.php');
