@@ -16,6 +16,8 @@ div {
   /*text-align: left;*/
   background-color: #6ba3ff;
   height: 60px;
+  position: absolute;
+  width: 2000px;
 }
 
 .logo {
@@ -58,13 +60,9 @@ div {
   margin-right: auto;
 }
 
-.top {
-	background-color: #6ba3ff;
-	height: 60px;
-}
-
 p {
-	color: #6ba3ff;
+	/*color: #6ba3ff;*/
+  color: #e3e5e4;
 }
 
 .login {
@@ -84,7 +82,7 @@ p {
 
 .sub {
   font-size: 24px;
-  color: #6ba3ff;
+  color: #e3e5e4;
   width: 180px;
 }
 
@@ -107,5 +105,13 @@ p {
 }
 
 .biggest {
-	text-align: center
+  width: 600px;
+  /*background-color: #1b543f;*/
+  margin-right: auto;
+  margin-left: auto; 
+	text-align: center;
+}
+
+.m {
+  /*background-color: black;*/
 }

@@ -86,7 +86,6 @@ if (isset($_POST["submit"])){
       <a href='forgot.php' class="link">Forgot password ?</a>   
         </form>
       </div>
-    <br><br><br>    
   </div>    
 </body>
 </html>
